@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+:root {
+  font-family: "Inter", "Roboto", "Segoe UI", system-ui, sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #ffffff;
+  color: #0f172a;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-size: 18px;
+  background-color: #ffffff;
+  color: #0f172a;
+}
+
+#app {
+  min-height: 100vh;
+}
+
+.btn-primary {
+  @apply bg-blue-700 text-white hover:bg-blue-800 focus:ring-4 focus:ring-blue-300;
+}
+
+.btn-secondary {
+  @apply bg-slate-200 text-slate-900 hover:bg-slate-300 focus:ring-4 focus:ring-slate-300;
+}
+
+.btn-danger {
+  @apply bg-rose-700 text-white hover:bg-rose-800 focus:ring-4 focus:ring-rose-300;
+}
+
+.card {
+  @apply bg-white border border-slate-200 rounded-2xl shadow-sm;
+}
+
+.input-field {
+  @apply w-full border border-slate-300 rounded-xl px-4 py-3 text-lg focus:outline-none focus:ring-4 focus:ring-blue-200;
+}
+
+.block-button {
+  @apply w-20 h-20 md:w-24 md:h-24 rounded-2xl border-2 border-slate-400 bg-slate-100 hover:bg-slate-200 focus:ring-4 focus:ring-blue-200;
+}
+
+.corsi-active {
+  background-color: #2563eb;
+  border-color: #1d4ed8;
+}
+
+.corsi-tap {
+  background-color: #bfdbfe;
+}
+
+.srt-wait {
+  background-color: #e2e8f0;
+}
+
+.srt-ready {
+  background-color: #10b981;
+}
+
+.stroop-red {
+  color: #dc2626;
+}
+
+.stroop-blue {
+  color: #2563eb;
+}
+
+.stroop-green {
+  color: #16a34a;
+}
+
+.stroop-yellow {
+  color: #ca8a04;
+}
+
+.high-contrast {
+  color: #0b0f1a;
+}
+
+.hint {
+  @apply text-slate-600;
+}
