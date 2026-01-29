@@ -32,6 +32,7 @@ const state = {
   session: 1,
   results: [] as TestResult[],
   resultsViewParticipantId: '',
+  lastSaveState: null as SaveState | null,
 }
 
 initFirebase()
@@ -97,9 +98,27 @@ const formatDate = (iso?: string) => {
 }
 
 const renderShell = (content: string) => {
+  const statusLabel = state.lastSaveState
+    ? state.lastSaveState.status === 'saved'
+      ? 'Synced'
+      : state.lastSaveState.status === 'queued'
+        ? 'Saved locally'
+        : 'Save failed'
+    : 'No sync yet'
+  const statusClass = state.lastSaveState
+    ? state.lastSaveState.status === 'saved'
+      ? 'bg-emerald-100 text-emerald-800'
+      : state.lastSaveState.status === 'queued'
+        ? 'bg-amber-100 text-amber-900'
+        : 'bg-rose-100 text-rose-900'
+    : 'bg-slate-100 text-slate-700'
+
   app.innerHTML = `
     <div class="min-h-screen bg-slate-50 text-slate-900">
       <div class="max-w-5xl mx-auto px-6 py-10">
+        <div class="flex justify-end mb-4">
+          <span class="px-3 py-2 rounded-full text-sm font-semibold ${statusClass}">${statusLabel}</span>
+        </div>
         ${content}
       </div>
     </div>
@@ -504,6 +523,7 @@ const startTest = (testName: TestName) => {
     onSave: async (result: TestResult): Promise<SaveState> => {
       const saveState = await saveResult(result)
       mergeResults([result])
+      state.lastSaveState = saveState
       return saveState
     },
     onExit: () => renderSession(),

@@ -164,12 +164,10 @@ export const renderBackwardDigitSpan = (container: HTMLElement, ctx: TestContext
     })
 
     const expected = [...sequence].reverse().join(' ')
-    const normalized = answer
-      .trim()
-      .replace(/[-,]/g, ' ')
-      .replace(/\s+/g, ' ')
+    const expectedDigits = [...sequence].reverse().join('')
+    const normalizedDigits = answer.replace(/\D/g, '')
 
-    const correct = normalized === expected
+    const correct = normalizedDigits === expectedDigits
 
     renderShell(`
       <h2 class="text-2xl font-semibold mb-2">${correct ? 'Correct!' : 'Not quite'}</h2>

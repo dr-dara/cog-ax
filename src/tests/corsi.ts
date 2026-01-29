@@ -143,7 +143,9 @@ export const renderCorsi = (container: HTMLElement, ctx: TestContext) => {
         button.addEventListener('click', () => {
           response.push(Number(button.dataset.index))
           button.classList.add('corsi-tap')
-          setTimeout(() => button.classList.remove('corsi-tap'), 200)
+          setTimeout(() => {
+            button.classList.remove('corsi-tap')
+          }, 250)
           if (response.length === sequence.length) {
             resolve()
           }
