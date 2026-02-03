@@ -82,7 +82,7 @@ export const saveResult = async (result: TestResult): Promise<SaveState> => {
     addPendingUpload(result)
     return {
       status: 'queued',
-      message: 'Saved locally. Firebase is not configured yet.',
+      message: 'Saved locally. Firebase is not configured in this build.',
     }
   }
 
@@ -93,10 +93,16 @@ export const saveResult = async (result: TestResult): Promise<SaveState> => {
       message: 'Saved to the cloud.',
     }
   } catch (error) {
+    const reason =
+      error instanceof Error
+        ? error.message
+        : typeof error === 'string'
+          ? error
+          : 'unknown error'
     addPendingUpload(result)
     return {
       status: 'queued',
-      message: 'Saved locally. Will retry when online.',
+      message: `Saved locally. Cloud sync failed (${reason}).`,
     }
   }
 }

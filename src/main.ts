@@ -116,8 +116,9 @@ const renderShell = (content: string) => {
   app.innerHTML = `
     <div class="min-h-screen bg-slate-50 text-slate-900">
       <div class="max-w-5xl mx-auto px-6 py-10">
-        <div class="flex justify-end mb-4">
+        <div class="flex flex-col items-end gap-2 mb-4">
           <span class="px-3 py-2 rounded-full text-sm font-semibold ${statusClass}">${statusLabel}</span>
+          ${state.lastSaveState ? `<span class="text-sm hint max-w-md text-right">${state.lastSaveState.message}</span>` : ''}
         </div>
         ${content}
       </div>
